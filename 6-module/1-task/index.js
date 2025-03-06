@@ -59,9 +59,12 @@ export default class UserTable {
     return this.elem;
   }
 
-#onMenuClick = (event) => {
+  #onMenuClick = (event) => {
+    if(!event.target.classList.contains('remove-btn'))
+      return;
+    
     const row = event.target.closest('tr');
     row.remove();
-    
+      
   }
 }
