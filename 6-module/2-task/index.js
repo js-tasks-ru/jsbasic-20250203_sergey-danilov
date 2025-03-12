@@ -1,4 +1,4 @@
-import createElement from '/assets/lib/create-element.js';
+import createElement from '../../assets/lib/create-element.js';
 
 export default class ProductCard {
   elem = null;
@@ -11,18 +11,18 @@ export default class ProductCard {
   
 
   constructor(product) {
-      this.#name = product.name || this.#name;
-      this.#price = product.price || this.#price;
-      this.#category = product.category || this.#category;
-      this.#image = product.image || this.#image;
-      this.#id = product.id || this.#id;
+    this.#name = product.name || this.#name;
+    this.#price = product.price || this.#price;
+    this.#category = product.category || this.#category;
+    this.#image = product.image || this.#image;
+    this.#id = product.id || this.#id;
 
-      this.elem = this.#render();
-      this.#mouseClick();
+    this.elem = this.#render();
+    this.#mouseClick();
   }
 
 #template() {
-      return `
+    return `
       <div class="card">
     <div class="card__top"> 
         <img src="/assets/images/products/${this.#image}" class="card__image" alt="product">
@@ -35,27 +35,25 @@ export default class ProductCard {
         </button>
     </div>
 </div>
-`;
-}
+`;}
 
 #mouseClick() {
   const addButton = this.elem.querySelector('.card__button');
 
   addButton.addEventListener('click', () => {
-      this.elem.dispatchEvent(
-        new CustomEvent("product-add", { // имя события должно быть именно "product-add"
-        detail: this.product.id, // Уникальный идентификатора товара из объекта товара
-        bubbles: true // это событие всплывает - это понадобится в дальнейшем
-        })
-      );
-   });
+    this.elem.dispatchEvent(
+      new CustomEvent("product-add", { 
+        detail: this.#id, 
+        bubbles: true 
+      })
+    );
+  });
 
 } 
    
 #render() {
-    this.elem = createElement(this.#template());
-
-    return this.elem;
-   }
+  this.elem = createElement(this.#template());
+  return this.elem;
+}
 }
 

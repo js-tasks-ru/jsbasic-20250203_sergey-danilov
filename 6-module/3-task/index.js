@@ -1,4 +1,4 @@
-import createElement from '/assets/lib/create-element.js';
+import createElement from '../../assets/lib/create-element.js';
 
 export default class Carousel {
   elem = null;
@@ -50,10 +50,10 @@ export default class Carousel {
     const buttonRight = this.elem.querySelector('.carousel__arrow.carousel__arrow_right');
     const buttonLeft = this.elem.querySelector('.carousel__arrow.carousel__arrow_left');
     const carouselInner = this.elem.querySelector(".carousel__inner");
-    const addButton = this.elem.querySelector('.carousel__button');
+    const addButtons = this.elem.querySelectorAll('.carousel__button');
   
-    addButton.addEventListener('click', (event) => {
-      const button = event.target.closest('.carousel__button');
+    addButtons.forEach(button => {
+      button.addEventListener('click', (event) => {
       const slide = button.closest('.carousel__slide');
       this.elem.dispatchEvent(
         new CustomEvent("product-add", { // имя события должно быть именно "product-add"
@@ -62,7 +62,7 @@ export default class Carousel {
         })
       );
     });
-    
+  })
     buttonLeft.style.display = 'none';
     let currentSlide = 0;
     const totalSlide = this.slides.length;
