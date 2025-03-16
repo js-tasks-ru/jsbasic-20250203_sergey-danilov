@@ -1,5 +1,6 @@
 import ProductCard from './index.js';
 
+
 describe('6-module-2-task', () => {
   let sut;
 
